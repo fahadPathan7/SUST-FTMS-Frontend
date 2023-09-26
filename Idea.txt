@@ -1,0 +1,8 @@
+1. Authentication:
+	a. Login : required(User name,Password)
+	b. Register : required(User name,Email,Password,Confirm Password)
+
+2. Home Page:
+	a. Event List : (onClick ->Show Event Details)
+	b. Add Event : (onClick -> Add event details)
+	c. Search : required(text)
