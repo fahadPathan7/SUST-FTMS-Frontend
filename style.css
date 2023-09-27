@@ -169,6 +169,10 @@ form button:hover {
     /* display: flex; */
 }
 
+.listContainer{
+    list-style-type: none;
+}
+
 .container-details{
     position: relative;
 }
@@ -252,6 +256,10 @@ form button:hover {
 .open-eventForm{
     visibility: visible;
     top: 50%;
-    transform: translate(0%,-20%) scale(1);
+    transform: translate(0%,-15%) scale(1);
+}
+
+.form-content .fa-solid{
+    margin-left: 100%;
 }
 

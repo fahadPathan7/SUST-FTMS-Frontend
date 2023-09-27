@@ -19,54 +19,32 @@
     </div>
     
     <div class="container">
-        <div class="container-details content-section">
-            <div class="card">
-                <img src="Images/football.png">
-                <h3>Football Tournament 2019</h3>
-            </div>
-            <div class="card">
-                <img src="Images/football.png">
-                <h3>Football Tournament 2020</h3>
-            </div>
-            <div class="card">
-                <img src="Images/football.png">
-                <h3>Football Tournament 2021</h3>
-            </div>
-            <div class="card">
-                <img src="Images/football.png">
-                <h3>Football Tournament 2022</h3>
-            </div>
-            <div class="card">
-                <img src="Images/football.png">
-                <h3>Football Tournament 2023</h3>
-            </div>
-            
+        <div class="container-details content-section" id="content-section">
             <div class="card" onclick="openForm()">
                 <img src="Images/plus.png">
                 <h3>Add Event</h3>
             </div>
         </div>
+        
         <div class="container-details eventForm" id="eventForm">
             <div class="form-box">
                 <div class="form-content">
+                    <i class="fa-solid fa-xmark" onclick="closeForm()"></i>
                     <h2>Tournament</h2>
                     <form action="#">
                         <div class="input-field">
-                            <input type="text" required>
+                            <input type="text" id="eventName" required>
                             <label>Event Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" required>
+                            <input type="text" id="eventYear" required>
                             <label>Event Year</label>
                         </div>
-                        <button type="submit">Add Event</button>
+                        <button  onclick="addEvent()">Add Event</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    
-
 </body>
 </html>
