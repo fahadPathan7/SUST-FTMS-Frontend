@@ -25,21 +25,23 @@ function closeForm(){
 
 
 function addEvent(){
-    let newCard = document.createElement("div");
-    newCard.className = "card";
+    // let newCard = document.createElement("div");
+    // newCard.className = "card";
     const eventName = document.getElementById("eventName");
     const eventYear = document.getElementById("eventYear");
     const headingText = eventName.value+"-"+eventYear.value;
 
     
-    newCard.innerHTML = `
-            <img src="${fixedImage}" alt="Task Image">
-            <h3>${headingText}</h3>
-        `;
+    // newCard.innerHTML = `
+    //         <img src="${fixedImage}" alt="Task Image">
+    //         <h3>${headingText}</h3>
+    //     `;
 
-    listContainer.appendChild(newCard);
+    // listContainer.appendChild(newCard);
 
     postANewTournament(eventName,eventYear);
+
+    // getTournamentList();
 
     eventName.value = "";
     eventYear.value = "";
@@ -60,10 +62,10 @@ function toHome(){
 
 // post resource. create
 const postANewTournament = (eventName,eventYear) => {
-    fetch('http://localhost:5000//api/tournament', {
+    fetch('http://localhost:5000/api/tournament', {
         method: 'POST',
         body: JSON.stringify({
-            tournamentId: "1001",
+            tournamentId: eventName.value+"-"+eventYear.value,
             tournamentName: eventName.value,
             tournamentYear: eventYear.value
         }),
@@ -77,6 +79,52 @@ const postANewTournament = (eventName,eventYear) => {
             }
             return response.json();
         })
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            getTournamentList();
+        })
         .catch(error => console.log(error));
+
+    //getTournamentList();
+}
+
+
+const getTournamentList = () => {
+    fetch('http://localhost:5000/api/tournaments')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("ERROR: ${response.status}");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            // const dataArray = JSON.parse(data);
+
+            // // console.log(dataArray);
+            // dataArray.forEach(function(item){
+
+            //     console.log(item);
+            //     // let newCard = document.createElement("div");
+            //     // newCard.className = "card";
+        
+            //     // const tournamentId = item.tournamentId;
+            //     // const tournamentName = item.tournamentName;
+            //     // const tournamentYear = item.tournamentYear;
+        
+            //     // const headingText = tournamentName+"-"+tournamentYear;
+        
+            //     // newCard.innerHTML = `
+            //     //     <img src="${fixedImage}" alt="Task Image">
+            //     //     <h3>${headingText}</h3>
+            //     // `;
+        
+            //     // listContainer.appendChild(newCard);
+            // });
+        })
+        .catch(error => console.log(error));
+
+    // const dataArray = JSON.parse(data);
+
+    
 }
