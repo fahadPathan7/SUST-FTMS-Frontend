@@ -1,8 +1,12 @@
 const loginSignupLink = document.querySelectorAll(".form-box .bottom-link a");
 const formPopup = document.querySelector(".form-popup");
+
 let showForm = document.getElementById("eventForm");
+
 const listContainer = document.getElementById("content-section");
 const fixedImage = "Images/football.png";
+
+const backToHome = document.getElementById("backToHome");
 
 loginSignupLink.forEach(link => {
     link.addEventListener("click",(e)=>{
@@ -35,7 +39,44 @@ function addEvent(){
 
     listContainer.appendChild(newCard);
 
+    postANewTournament(eventName,eventYear);
+
     eventName.value = "";
     eventYear.value = "";
     closeForm();
+}
+
+listContainer.addEventListener("click",function(e){
+    const selectedCard = document.querySelector('.eventAdd');
+    if(e.target.tagName == "IMG" && !e.target.parentElement.classList.contains('eventAdd')){
+        window.location.href = 'tournament.html';
+    }
+},false);
+
+
+function toHome(){
+    window.location.href = "home.html";
+}
+
+// post resource. create
+const postANewTournament = (eventName,eventYear) => {
+    fetch('http://localhost:5000//api/tournament', {
+        method: 'POST',
+        body: JSON.stringify({
+            tournamentId: "1001",
+            tournamentName: eventName.value,
+            tournamentYear: eventYear.value
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("ERROR: ${response.status}");
+            }
+            return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
 }
