@@ -38,7 +38,10 @@ function addEvent(){
 
 listContainer.addEventListener("click",function(e){
     if(e.target.tagName == "IMG" && !e.target.parentElement.classList.contains('eventAdd')){
-        
+        const clickedCard = e.target.closest(".card");
+        const tournamentTitle = clickedCard.querySelector('h3').textContent;
+
+        localStorage.setItem("tournamentName",tournamentTitle);
         window.location.href = 'tournament.html';
         
     }
